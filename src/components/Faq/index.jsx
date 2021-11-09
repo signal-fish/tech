@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Collapse, Button } from "antd";
 import { faqData } from "../../data";
+
 const { Panel } = Collapse;
 
 const Faq = () => {
@@ -44,19 +45,19 @@ const Faq = () => {
 const S = {};
 
 const Container = styled.div`
-  margin: 0 0 40px 0;
+padding-top: 70px;
 `;
 
 const Wrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
 `;
 
 const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 70px;
 `;
 
 const Title = styled.h2`

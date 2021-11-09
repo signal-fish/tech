@@ -23,11 +23,11 @@ const About = () => {
             deserunt.
           </Description>
         </DescriptionWrapper>
-        <S.Row gutter={[16]}>
+        <Row gutter={[16]}>
           {aboutData.map((item) => {
             const { id, icon, title, content } = item;
             return (
-              <Col key={id} span={8}>
+              <Col key={id} md={{span: 8}}>
                 <Item>
                   <Icon>{icon}</Icon>
                   <ItemTitle>{title}</ItemTitle>
@@ -36,28 +36,26 @@ const About = () => {
               </Col>
             );
           })}
-        </S.Row>
+        </Row>
       </Wrapper>
     </Container>
   );
 };
 
-const S = {};
 const Container = styled.div`
-  display: flex;
-  justify-content: center;
+  text-align: center;
+  margin: 0 0 50px;
 `;
 
 const Wrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 60px 0;
+  padding: 60px 20px;
 `;
 
 const TitleWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
+  padding: 0 0 10px;
 `;
 
 const Title = styled.h2`
@@ -79,19 +77,14 @@ const Divider = styled.hr`
 `;
 
 const DescriptionWrapper = styled.div`
-  margin-top: 25px;
+  text-align: center;
+  margin: 30px 0 50px 0;
 `;
 
 const Description = styled.p``;
 
-S.Row = styled(Row)`
-  margin-top: 40px;
-`;
-
 const Item = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align:center
 `;
 
 const Icon = styled.div`
@@ -101,6 +94,9 @@ const Icon = styled.div`
 
 const ItemTitle = styled.h3``;
 
-const ItemContent = styled.p``;
+const ItemContent = styled.p`
+  text-align: center;
+
+`;
 
 export default About;

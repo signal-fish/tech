@@ -4,12 +4,12 @@ import { Layout } from "antd";
 import Navbar from "./components/Navbar";
 import Introduction from "./components/Introduction";
 import About from "./components/About";
-import Features from "./components/Features";
+import Features from "./components/Feature";
 import Works from "./components/Works";
 import Faq from "./components/Faq";
 import Pricing from "./components/Pricing";
 import Contact from "./components/Contact";
-import AppFooter from "./components/Footer"
+import AppFooter from "./components/Footer";
 const { Header, Content, Footer } = Layout;
 
 const App = () => {
@@ -44,14 +44,15 @@ S.Layout = styled(Layout)`
 `;
 
 S.Header = styled(Header)`
-  background: #ece7e7;
-  height: 70px;
-  position: fixed;
+  background: #f8f8f8;
+  padding: 0;
   width: 100vw;
   z-index: 999;
+  position: fixed;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 `;
 
 S.Footer = styled(Footer)`
-background: #000;
-`
+  background: #000;
+`;
 export default App;

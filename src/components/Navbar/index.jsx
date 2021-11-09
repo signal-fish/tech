@@ -1,9 +1,21 @@
-import { Menu } from "antd";
+import { useState } from "react";
+import { Anchor, Drawer, Button } from "antd";
 import styled from "styled-components";
-import {navbarData} from "../../data"
-const { Item } = Menu;
+import { navbarData } from "../../data";
+import {  laptop, tabletPro } from "../../responsive";
+
+const { Link } = Anchor;
 
 const Navbar = () => {
+  const [visible, setVisible] = useState(false);
+
+  const showDrawer = () => {
+    setVisible(true);
+  };
+  const onClose = () => {
+    setVisible(false);
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -11,27 +23,37 @@ const Navbar = () => {
           <Logo src="assets/tech.jpeg" alt="tech logo" />
           <LogoLink href="#">Tech</LogoLink>
         </LogoWrapper>
-        <S.Menu mode="horizontal">
-          {
-            navbarData.map(item => {
-              const {id, anchor, name} = item
-              return (
-                <S.Item key={id}>
-                  <Link href={anchor}>{name}</Link>
-                </S.Item>
-              );
-            })
-          }
-        </S.Menu>
-        {/* <Button type="primary">
-          <i className="fas fa-bars"></i>
-        </Button> */}
+        <HideForMobile>
+          <Anchor targetOffset="65">
+            {navbarData.map((item) => {
+              const { id, anchor, name } = item;
+              return <Link key={id} href={anchor} title={name} />;
+            })}
+          </Anchor>
+        </HideForMobile>
+        <ShowForMobile>
+          <Button type="primary" onClick={showDrawer}>
+            <i className="fas fa-bars"></i>
+          </Button>
+          <Drawer
+            placement="right"
+            onClose={onClose}
+            visible={visible}
+            closable={false}
+          >
+            <Anchor targetOffset="65">
+              {navbarData.map((item) => {
+                const { id, anchor, name } = item;
+                return <Link key={id} href={anchor} title={name} />;
+              })}
+            </Anchor>
+          </Drawer>
+        </ShowForMobile>
       </Wrapper>
     </Container>
   );
 };
 
-const S = {};
 const Container = styled.div`
   margin: 0 auto;
   max-width: 1200px;
@@ -42,6 +64,62 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  && .ant-anchor-wrapper {
+    background: none;
+  }
+
+  && .ant-anchor {
+    display: flex;
+  }
+
+  && .ant-anchor-ink {
+    display: none;
+  }
+
+  && .ant-anchor-link {
+    padding: 0 10px;
+    line-height: 1.4;
+    position: relative;
+
+    ${tabletPro({
+      padding: "0 15px",
+    })}
+
+    ${laptop({
+      padding: "0 20px",
+    })}
+  }
+
+  && .ant-anchor-link:before,
+  && .ant-anchor-link:after {
+    content: "";
+    background: #1890ff;
+    width: 1px;
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 30%;
+    opacity: 0;
+    transition: all 0.3s linear;
+  }
+
+  && .ant-anchor-link:after {
+    left: auto;
+    right: 30%;
+  }
+
+  && .ant-anchor-link.ant-anchor-link-active:before,
+  && .ant-anchor-link:hover:before {
+    left: 5%;
+    opacity: 1;
+  }
+
+  && .ant-anchor-link.ant-anchor-link-active:after,
+  && .ant-anchor-link:hover:after {
+    right: 5%;
+    opacity: 1;
+  }
 `;
 
 const LogoWrapper = styled.div`
@@ -65,19 +143,20 @@ const LogoLink = styled.a`
   color: #000;
 `;
 
-S.Menu = styled(Menu)`
-  width: auto;
-  background: transparent;
-  border: none;
-  display: flex;
-  justify-content: flex-end;
+const HideForMobile = styled.div`
+  display: none;
+
+  ${tabletPro({
+    display: "block",
+  })}
 `;
 
-S.Item = styled(Item)`
-  font-size: 20px;
+const ShowForMobile = styled.div`
+  display: block;
+
+  ${tabletPro({
+    display: "none",
+  })}
 `;
 
-const Link = styled.a`
-  text-decoration: none;
-`;
 export default Navbar;

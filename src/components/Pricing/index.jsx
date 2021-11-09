@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import { List, Card, Button } from "antd";
 import { pricingData } from "../../data";
+import { tablet } from "../../responsive";
 const Pricing = () => {
   return (
     <Container id="pricing">
       <Wrapper>
         <TitleWrapper>
           <Title>Choose a plan to fit your needs</Title>
-          <SubTitle>
-            Debitis itaque minima dolorum fuga aidem enim
-          </SubTitle>
+          <SubTitle>Debitis itaque minima dolorum fuga aidem enim</SubTitle>
         </TitleWrapper>
         <Divider />
         <S.List
@@ -49,13 +48,13 @@ const Pricing = () => {
 
 const S = {};
 const Container = styled.div`
-background: #ebebeb;
+  background: #ebebeb;
 `;
 
 const Wrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding-bottom: 50px;
+  padding: 0 20px 60px;
 `;
 
 const TitleWrapper = styled.div`
@@ -98,6 +97,10 @@ S.List = styled(List)`
     transform: scale(1.1);
     position: relative;
     z-index: 1;
+
+    ${tablet({
+      transform: "scale(1)",
+    })}
   }
 `;
 

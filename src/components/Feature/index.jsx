@@ -39,20 +39,20 @@ const S = {};
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  background: #f2f2f2;
-  margin-bottom: 20px;
+  background: #ebe5e5;
 `;
 
 const Wrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 15px;
 `;
 
 const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 70px;
+  padding-top: 60px;
 `;
 
 const Title = styled.h2`
